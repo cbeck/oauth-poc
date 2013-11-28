@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+gem 'haml-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -30,6 +31,16 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
 gem 'oauth2'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'terminal-notifier-guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-pow', require: false
+  gem 'shoulda-matchers'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

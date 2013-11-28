@@ -1,4 +1,11 @@
 OauthPoc::Application.routes.draw do
+  get "api_account/index"
+  get "api_account/show"
+  get "api_account/create"
+  get "api_account/update"
+  get "api_account/edit"
+  get "api_account/new"
+  get "api_account/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
