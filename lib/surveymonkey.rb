@@ -5,6 +5,7 @@ module OmniAuth
     class Surveymonkey < OmniAuth::Strategies::OAuth2
 
       DEFAULT_RESPONSE_TYPE = 'code'
+      DEFAULT_GRANT = 'authorization_code'
 
       option :name, "surveymonkey"
 
@@ -22,6 +23,26 @@ module OmniAuth
           params[:client_id] = options[:client_id]
           params[:api_key] = options[:api_key]
         end
+      end
+
+      def token_params
+        super.tap do |params|
+          params[:grant_type] ||= DEFAULT_GRANT
+          params[:client_id] = options[:client_id]
+          params[:client_secret] = options[:client_secret]
+          params[:redirect_uri] = callback_url
+        end
+      end
+
+      def build_access_token
+         token_params = {
+          :grant_type => DEFAULT_GRANT,
+          :redirect_uri => callback_url,
+          :client_id => client.id,
+          :client_secret => client.secret
+        }
+        verifier = request.params['code']
+        client.auth_code.get_token(verifier, token_params)
       end
       
       def callback_phase
