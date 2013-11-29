@@ -8,6 +8,7 @@ OauthPoc::Application.routes.draw do
   get "api_account/destroy"
 
   get 'auth/:provider/callback', to: 'api_account#new'
+  get 'auth/failure', to: 'api_account#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

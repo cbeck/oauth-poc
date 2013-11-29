@@ -61,6 +61,7 @@ module OmniAuth
 
       def request_phase
         log :info, ">>>>>>>>> in request phase"
+        puts "<<<<<<<<<<<<< in request_phase"
         super
       end
 
