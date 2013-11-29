@@ -26,6 +26,7 @@ module OmniAuth
       end
 
       def token_params
+        Rails.logger.info ">>>>>>> calling token params"
         super.tap do |params|
           params[:grant_type] ||= DEFAULT_GRANT
           params[:client_id] = options[:client_id]
@@ -35,17 +36,24 @@ module OmniAuth
       end
 
       def build_access_token
+        Rails.logger.info ">>>>>>>> calling build_access_token"
          token_params = {
           :grant_type => DEFAULT_GRANT,
           :redirect_uri => callback_url,
-          :client_id => client.id,
-          :client_secret => client.secret
+          :client_id => options[:client_id],
+          :client_secret => options[:client_secret],
+          :api_key => options[:api_key]
         }
+        Rails.logger.info ">>>>>>> token params: #{token_params.inspect}"
         verifier = request.params['code']
-        client.auth_code.get_token(verifier, token_params)
+        Rails.logger.info ">>>>>>> code: #{verifier.inspect}"
+        token = client.auth_code.get_token(verifier, token_params)
+        Rails.logger.info ">>>>>> token: #{token.inspect}"
+        token
       end
       
       def callback_phase
+        Rails.logger.info ">>>>>>>> in callback_phase"
         options[:client_options][:token_url] = "/oauth/token?api_key=#{options[:api_key]}"
         super
       end
