@@ -30,7 +30,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
-gem 'omniauth-surveymonkey', "~> 1.0.0"
+gem 'omniauth'
 
 group :development, :test do
   gem 'factory_girl_rails'
