@@ -71,6 +71,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.5)
@@ -95,15 +96,22 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
-    multi_xml (0.5.5)
     multipart-post (1.2.0)
-    oauth2 (0.9.2)
+    oauth2 (0.8.1)
       faraday (~> 0.8)
-      httpauth (~> 0.2)
+      httpauth (~> 0.1)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
-      multi_xml (~> 0.5)
       rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
+    omniauth-surveymonkey (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -201,7 +209,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
-  oauth2
+  omniauth-surveymonkey (~> 1.0.0)
   pg
   rails (= 4.0.0)
   rails_12factor
