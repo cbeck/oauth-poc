@@ -38,16 +38,9 @@ module OmniAuth
 
       def build_access_token
         log :info, ">>>>>>>> calling build_access_token"
-        #  token_params = {
-        #   :grant_type => DEFAULT_GRANT,
-        #   :redirect_uri => callback_url,
-        #   :client_id => options[:client_id],
-        #   :client_secret => options[:client_secret],
-        #   :api_key => options[:api_key]
-        # }
-        log :info, ">>>>>>> token params: #{token_params.inspect}"
         verifier = request.params['code']
         log :info, ">>>>>>> code: #{verifier.inspect}"
+        log :info, ">>>>> getting auth token now"
         token = client.auth_code.get_token(verifier, token_params)
         log :info, ">>>>>> token: #{token.inspect}"
         token
@@ -56,15 +49,15 @@ module OmniAuth
       def callback_phase
         log :info, ">>>>>>>> in callback_phase"
         options[:client_options][:token_url] = "/oauth/token?api_key=#{options[:api_key]}"
+        log :info, ">>>> in callback phase, calling build_access_token"
         self.access_token = build_access_token
-        log :info, ">>>>>> token: #{self.access_token.inspect}"
-        super
-      end
-
-      def request_phase
-        log :info, ">>>>>>>>> in request phase"
-        puts "<<<<<<<<<<<<< in request_phase"
-        super
+        log :info, ">>>>>> self access token: #{self.access_token.inspect}"
+        log :info, ">>>> getting ready to set auth hash"
+        hash = auth_hash
+        log :info, ">>>>> auth hash is: #{hash.inspect}"
+        self.env['omniauth.auth'] = hash
+        log :info, ">>>> calling app"
+        call_app!
       end
 
       info do
