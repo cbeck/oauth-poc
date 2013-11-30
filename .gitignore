@@ -12,6 +12,9 @@
 /db/*.sqlite3-journal
 config/database.yml
 
+.powrc
+.rvmrc
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
