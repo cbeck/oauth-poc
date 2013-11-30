@@ -56,7 +56,8 @@ module OmniAuth
       def callback_phase
         log :info, ">>>>>>>> in callback_phase"
         options[:client_options][:token_url] = "/oauth/token?api_key=#{options[:api_key]}"
-        build_access_token
+        self.access_token = build_access_token
+        log :info, ">>>>>> token: #{self.access_token.inspect}"
         super
       end
 
@@ -64,6 +65,13 @@ module OmniAuth
         log :info, ">>>>>>>>> in request phase"
         puts "<<<<<<<<<<<<< in request_phase"
         super
+      end
+
+      info do
+        {
+          :token => self.access_token.token,
+          :client => self.access_token.client.id
+        }
       end
     end
   end
