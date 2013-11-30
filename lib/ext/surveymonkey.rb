@@ -56,7 +56,7 @@ module OmniAuth
       def callback_phase
         log :info, ">>>>>>>> in callback_phase"
         options[:client_options][:token_url] = "/oauth/token?api_key=#{options[:api_key]}"
-        super
+        build_access_token
       end
 
       def request_phase
