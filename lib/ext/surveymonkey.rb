@@ -38,13 +38,13 @@ module OmniAuth
 
       def build_access_token
         log :info, ">>>>>>>> calling build_access_token"
-         token_params = {
-          :grant_type => DEFAULT_GRANT,
-          :redirect_uri => callback_url,
-          :client_id => options[:client_id],
-          :client_secret => options[:client_secret],
-          :api_key => options[:api_key]
-        }
+        #  token_params = {
+        #   :grant_type => DEFAULT_GRANT,
+        #   :redirect_uri => callback_url,
+        #   :client_id => options[:client_id],
+        #   :client_secret => options[:client_secret],
+        #   :api_key => options[:api_key]
+        # }
         log :info, ">>>>>>> token params: #{token_params.inspect}"
         verifier = request.params['code']
         log :info, ">>>>>>> code: #{verifier.inspect}"
