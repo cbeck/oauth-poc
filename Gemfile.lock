@@ -109,9 +109,8 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-surveymonkey2 (0.0.2)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
+    omniauth-surveymonkey2 (0.0.3)
+      omniauth-oauth2
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -209,7 +208,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
-  omniauth-surveymonkey2 (~> 0.0.2)
+  omniauth-surveymonkey2 (~> 0.0.3)
   pg
   rails (= 4.0.0)
   rails_12factor
