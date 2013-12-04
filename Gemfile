@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
 #gem "omniauth-surveymonkey", "~> 1.0.0"
-gem "omniauth-surveymonkey2", "~> 0.0.14"
+gem "omniauth-surveymonkey2", "~> 0.0.11"
 
 group :development, :test do
   gem 'factory_girl_rails'
