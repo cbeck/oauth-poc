@@ -8,7 +8,7 @@ end
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :surveymonkey, :setup => SETUP_PROC
+  provider :surveymonkey2, :setup => SETUP_PROC
 end
 
 OmniAuth.config.logger = Rails.logger
