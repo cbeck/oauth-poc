@@ -9,7 +9,11 @@ class ApiAccountController < ApplicationController
     @errors = params[:message]    
   end
 
-  def show    
+  def show  
+    @response = HTTParty.post("https://api.surveymonkey.net/v2/surveys/get_survey_list",
+        :query => {:api_key => ENV['SURVEY_MONKEY_API_KEY']},
+        :headers => { "Authorization" => @api_account.oauth_token, "Content-Type" => "application/json"}
+      )  
   end
 
   def create
