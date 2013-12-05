@@ -2,6 +2,6 @@
 
 %ul
   - @api_accounts.each do |api_account|
-    %li= "#{link_to api_account.username, api_account_path(api_account)}, #{api_account.oauth_token}"
+    %li= "#{link_to api_account.username, api_account_show_path(api_account)}, #{api_account.oauth_token}"
 
 = link_to("Get or refresh Survey Monkey token", "/auth/surveymonkey2", target: "_new")
