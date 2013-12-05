@@ -1,2 +1,2 @@
-module ApiAccountHelper
+module ApiAccountsHelper
 end
