@@ -1,2 +1,7 @@
-%h1 ApiAccount#index
-%p Find me in app/views/api_account/index.html.haml
+%h1 API Accounts
+
+%ul
+  - @api_accounts.each do |api_account|
+    %li= "#{api_account.username}, #{api_account.oauth_token}"
+
+= link_to("Get or refresh Survey Monkey token", "/auth/surveymonkey2", target: "_new")

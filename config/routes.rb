@@ -2,18 +2,16 @@ OauthPoc::Application.routes.draw do
   get "api_account/index"
   get "api_account/show"
   get "api_account/create"
-  get "api_account/update"
-  get "api_account/edit"
   get "api_account/new"
   get "api_account/destroy"
 
-  get 'auth/:provider/callback', to: 'api_account#new'
+  get 'auth/:provider/callback', to: 'api_account#create'
   get 'auth/failure', to: 'api_account#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'api_accounts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

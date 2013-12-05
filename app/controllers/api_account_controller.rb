@@ -1,40 +1,40 @@
 class ApiAccountController < ApplicationController
+  before_filter :find_api_account, :only => [:show, :destroy]
+
   def index
     @api_accounts = ApiAccount.all
   end
 
   def new
-    @api_account = ApiAccount.new
-    @auth_hash = auth_hash
-    @errors = params[:message]
-    @token = @auth_hash[:credentials][:token]
+    @errors = params[:message]    
   end
 
-  def edit
-  end
-
-  def show
-    @api_account = ApiAccount.find(params[:id])
-  end
-
-  def update
+  def show    
   end
 
   def create
-    # @api_account = ApiAccount.new(params[:api_account])
-    # client = Oauth2::Client.new(ENV['SURVEY_MONKEY_CLIENT_ID'], ENV['SURVEY_MONKEY_SECRET'], ENV['SURVEY_MONKEY_API_URL'])
-    # client.auth_code.authorize_url(:redirect_uri => 'http://beck-oauth-poc.herokuapp.com/oauth2/callback')
-
-    # token = client.auth_code.get_token('code', :redirect_uri => 'http://beck-oauth-poc.herokuapp.com/oauth2/callback', :headers => {'Authorization' => })
-
+    @api_account = ApiAccount.find_or_create_by_username(@auth_hash[:info][:client])
+    @api_account.oauth_token = @auth_hash[:credentials][:token]
+    if @api_account.save
+      flash[:message] = "Credentials saved!"
+    else
+      flash[:message] = "There was a problem saving the credentials."
+      render :new
+    end
   end
 
   def destroy
+    @api_account.destroy
+    redirect_to api_accounts_path
   end
 
   protected
 
   def auth_hash
     request.env['omniauth.auth']
+  end
+
+  def find_api_account
+    @api_account = ApiAccount.find(params[:id])
   end
 end
