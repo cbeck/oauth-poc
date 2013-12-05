@@ -10,13 +10,9 @@ class ApiAccountsController < ApplicationController
   end
 
   def show  
-    data = {}
-    data["order_asc"] = true
-    @response = HTTParty.post("https://api-surveymonkey-net-fytofsd4ktc2.runscope.net/v2/surveys/get_survey_list",
-        :query => {:api_key => ENV['SURVEY_MONKEY_API_KEY']},
-        :body => JSON.dump(data),
-        :headers => { "Authorization" => "Bearer #{@api_account.oauth_token}", "Content-Type" => "application/json"}
-      )  
+    data = {"order_asc" => true}
+    service = SurveyMonkeyService.new(@api_account.oauth_token)
+    @response = service.get_survey_list(data)
   end
 
   def create
