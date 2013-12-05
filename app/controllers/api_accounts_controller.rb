@@ -1,4 +1,4 @@
-class ApiAccountController < ApplicationController
+class ApiAccountsController < ApplicationController
   before_filter :find_api_account, :only => [:show, :destroy]
 
   def index
