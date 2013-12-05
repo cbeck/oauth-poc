@@ -1,8 +1,11 @@
 %h1 ApiAccount#new
 %p Find me in app/views/api_account/new.html.haml
 
-AUTH HASH
+%h2 AUTH HASH
 = @auth_hash.inspect
 
-ERRORS
+%h2 TOKEN
+= @token
+
+%h2 ERRORS
 = @errors.inspect

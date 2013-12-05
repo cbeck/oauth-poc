@@ -7,6 +7,7 @@ class ApiAccountController < ApplicationController
     @api_account = ApiAccount.new
     @auth_hash = auth_hash
     @errors = params[:message]
+    @token = @auth_hash[:credentials][:token]
   end
 
   def edit
