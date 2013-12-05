@@ -13,6 +13,8 @@ class ApiAccountController < ApplicationController
   end
 
   def create
+    Rails.logger.info "#{auth_hash.inspect}"
+    @auth_hash = auth_hash
     @api_account = ApiAccount.find_or_create_by_username(@auth_hash[:info][:client])
     @api_account.oauth_token = @auth_hash[:credentials][:token]
     if @api_account.save
