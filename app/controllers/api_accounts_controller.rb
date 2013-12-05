@@ -12,7 +12,7 @@ class ApiAccountsController < ApplicationController
   def show  
     @response = HTTParty.post("https://api-surveymonkey-net-fytofsd4ktc2.runscope.net/v2/surveys/get_survey_list",
         :query => {:api_key => ENV['SURVEY_MONKEY_API_KEY']},
-        :body => {"data={}"},
+        :body => {:data => {}},
         :headers => { "Authorization" => "Bearer #{@api_account.oauth_token}", "Content-Type" => "application/json"}
       )  
   end
